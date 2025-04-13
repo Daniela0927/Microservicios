@@ -1,0 +1,17 @@
+
+version: '3.8'
+
+services:
+  product-service:
+    build: ./product-service
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./product-service/products.json:/app/products.json
+    depends_on:
+      - calculation-service
+
+  calculation-service:
+    build: ./calculation-service
+    ports:
+      - "5000:5000"
